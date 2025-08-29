@@ -2,7 +2,7 @@ package com.example.nav3example.presentation.screen.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.nav3example.domain.state.HomeUiState
+import com.example.nav3example.presentation.state.HomeUiState
 import com.example.nav3example.domain.usecases.LogoutUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

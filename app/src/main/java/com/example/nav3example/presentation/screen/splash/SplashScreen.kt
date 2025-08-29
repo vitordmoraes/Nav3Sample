@@ -30,13 +30,11 @@ fun SplashScreen(
         viewModel.checkUserLogin()
     }
 
-    LaunchedEffect(uiState.shouldNavigateToHome) {
+    LaunchedEffect(uiState) {
         if (uiState.shouldNavigateToHome) {
             onNavigateToHome()
         }
-    }
 
-    LaunchedEffect(uiState.shouldNavigateToLogin) {
         if (uiState.shouldNavigateToLogin) {
             onNavigateToLogin()
         }

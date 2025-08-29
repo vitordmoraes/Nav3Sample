@@ -1,4 +1,4 @@
-package com.example.nav3example.domain.state
+package com.example.nav3example.presentation.state
 
 data class LoginUiState(
     val username: String = "",
