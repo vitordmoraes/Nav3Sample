@@ -1,5 +1,6 @@
 package com.example.nav3example.data.local.datasource
 
+import com.example.nav3example.data.local.preferences.AppPreferences
 import com.example.nav3example.domain.entity.User
 
 class SharedPrefsDataSource(

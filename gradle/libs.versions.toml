@@ -19,7 +19,7 @@ lifecycle = "2.9.3"
 ksp = "2.0.0-1.0.22"
 gson = "3.0.0"
 coil = "3.3.0"
-
+kotlinx-serialization-json = "1.9.0"
 koin-bom = "4.1.0"
 navigation = "2.9.3"
 
@@ -63,6 +63,9 @@ coil-http = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.
 # Gson
 gson = {group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "gson"}
 
+# serialization
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
+
 # Koin
 koin-bom = { module = "io.insert-koin:koin-bom", version = "4.1.0" }
 koin-core = { module = "io.insert-koin:koin-core" }
@@ -75,6 +78,7 @@ androidx-navigation-fragment = { group = "androidx.navigation", name = "navigati
 androidx-navigation-ui = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
 
 [plugins]
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
