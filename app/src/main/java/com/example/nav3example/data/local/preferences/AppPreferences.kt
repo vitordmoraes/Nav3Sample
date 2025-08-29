@@ -10,11 +10,11 @@ class AppPreferences(private val context: Context) {
         PREF_NAME, Context.MODE_PRIVATE
     )
 
-    companion object {
-        private const val PREF_NAME = "app_preferences"
-        private const val KEY_USERNAME = "username"
-        private const val KEY_PASSWORD = "password"
-        private const val KEY_IS_LOGGED_IN = "is_logged_in"
+    private companion object {
+        const val PREF_NAME = "app_preferences"
+        const val KEY_USERNAME = "username"
+        const val KEY_PASSWORD = "password"
+        const val KEY_IS_LOGGED_IN = "is_logged_in"
     }
 
     fun saveUser(username: String, password: String) {
