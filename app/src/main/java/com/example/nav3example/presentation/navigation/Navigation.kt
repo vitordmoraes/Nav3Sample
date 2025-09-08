@@ -59,6 +59,7 @@ fun Navigation() {
                     DetailsScreen(
                         onNavigateBack = {
                             backStack.removeLastOrNull()
+                            backStack.add(HomeRoute)
                         }
                     )
                 }
@@ -67,6 +68,7 @@ fun Navigation() {
                     SettingsScreen(
                         onNavigateBack = {
                             backStack.removeLastOrNull()
+                            backStack.add(HomeRoute)
                         }
                     )
                 }

@@ -16,11 +16,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.nav3example.presentation.state.LoginUiState
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -28,10 +29,16 @@ fun LoginScreen(
     onNavigateToHome: () -> Unit,
     viewModel: LoginViewModel = koinViewModel()
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    val uiState by produceState(initialValue = LoginUiState()) {
+        viewModel.uiState.collect { newState ->
+            value = newState
+        }
+    }
 
     LaunchedEffect(uiState.shouldNavigateToHome) {
         if (uiState.shouldNavigateToHome) {
+            viewModel.onLoggedIn()
             onNavigateToHome()
         }
     }

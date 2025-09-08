@@ -42,4 +42,8 @@ class LoginViewModel(
             )
         }
     }
+
+    fun onLoggedIn() {
+        _uiState.value = _uiState.value.copy(shouldNavigateToHome = false)
+    }
 }

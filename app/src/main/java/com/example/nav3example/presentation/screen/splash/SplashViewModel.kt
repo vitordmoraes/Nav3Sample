@@ -8,6 +8,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class SplashViewModel(
@@ -23,12 +24,13 @@ class SplashViewModel(
 
             val isLoggedIn = checkUserLoggedUseCase()
 
-            _uiState.value = _uiState.value.copy(
-                isLoading = false,
-                shouldNavigateToHome = isLoggedIn,
-                shouldNavigateToLogin = !isLoggedIn
-            )
-            uiState
+            _uiState.update { currentState ->
+                currentState.copy(
+                    isLoading = false,
+                    shouldNavigateToHome = isLoggedIn,
+                    shouldNavigateToLogin = !isLoggedIn
+                )
+            }
         }
     }
 }

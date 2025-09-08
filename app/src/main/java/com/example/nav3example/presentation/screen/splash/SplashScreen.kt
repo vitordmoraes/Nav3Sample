@@ -11,11 +11,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.nav3example.presentation.state.SplashUiState
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -24,19 +26,20 @@ fun SplashScreen(
     onNavigateToLogin: () -> Unit,
     viewModel: SplashViewModel = koinViewModel()
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by produceState(initialValue = SplashUiState()) {
+        viewModel.uiState.collect { newState ->
+            value = newState
+        }
+    }
 
     LaunchedEffect(Unit) {
         viewModel.checkUserLogin()
     }
 
-    LaunchedEffect(uiState) {
-        if (uiState.shouldNavigateToHome) {
-            onNavigateToHome()
-        }
-
-        if (uiState.shouldNavigateToLogin) {
-            onNavigateToLogin()
+    LaunchedEffect(uiState.shouldNavigateToHome, uiState.shouldNavigateToLogin) {
+        when {
+            uiState.shouldNavigateToHome -> onNavigateToHome()
+            uiState.shouldNavigateToLogin -> onNavigateToLogin()
         }
     }
 
