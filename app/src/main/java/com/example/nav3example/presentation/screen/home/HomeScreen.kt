@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.nav3example.presentation.components.BottomNavigationBar
 import com.example.nav3example.presentation.components.TopBar
+import com.example.nav3example.presentation.navigation.HomeNavigation
 import com.example.nav3example.presentation.state.HomeUiState
 import org.koin.androidx.compose.koinViewModel
 

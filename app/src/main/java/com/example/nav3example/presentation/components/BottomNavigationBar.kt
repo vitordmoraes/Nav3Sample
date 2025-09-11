@@ -5,10 +5,10 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import com.example.nav3example.presentation.screen.home.HomeNavigation
-import com.example.nav3example.presentation.screen.home.HomeNavigation.Home
-import com.example.nav3example.presentation.screen.home.HomeNavigation.Details
-import com.example.nav3example.presentation.screen.home.HomeNavigation.Settings
+import com.example.nav3example.presentation.navigation.HomeNavigation
+import com.example.nav3example.presentation.navigation.HomeNavigation.Home
+import com.example.nav3example.presentation.navigation.HomeNavigation.Details
+import com.example.nav3example.presentation.navigation.HomeNavigation.Settings
 
 
 
