@@ -60,16 +60,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    // Room
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-//    ksp(libs.androidx.room.compiler)
-
-    // Retrofit
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.converter.moshi)
-    implementation(libs.moshi.kotlin)
-
     // Jetpack Compose
     implementation(libs.androidx.compose.livedata)
     implementation(libs.androidx.navigation.compose)
@@ -87,5 +77,4 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
     implementation(libs.kotlinx.serialization.json)
-//    ksp(libs.koin.compiler)
 }

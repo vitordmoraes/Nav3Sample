@@ -10,14 +10,9 @@ lifecycleRuntimeKtx = "2.9.3"
 activityCompose = "1.10.1"
 composeBom = "2025.08.01"
 
-#versions implemented
-room = "2.7.2"
-retrofit = "3.0.0"
-moshi = "1.15.2"
+#implemented versions
 navigationCompose = "2.9.3"
 lifecycle = "2.9.3"
-ksp = "2.0.0-1.0.22"
-gson = "3.0.0"
 coil = "3.3.0"
 kotlinx-serialization-json = "1.9.0"
 koin-bom = "4.1.0"
@@ -43,16 +38,6 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 
-# Room
-androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
-androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
-androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
-
-# Retrofit
-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
-retrofit-converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
-moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi" }
-
 # Compose
 androidx-compose-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version = "1.9.0" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
@@ -63,9 +48,6 @@ androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-ru
 coil = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
 coil-http = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil" }
 
-# Gson
-gson = {group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "gson"}
-
 # serialization
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 
@@ -74,7 +56,6 @@ koin-bom = { module = "io.insert-koin:koin-bom", version = "4.1.0" }
 koin-core = { module = "io.insert-koin:koin-core" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin-bom" }
 koin-androidx-navigation = { module = "io.insert-koin:koin-androidx-navigation", version.ref = "koin-bom" }
-koin-compiler = { module = "io.insert-koin:koin-compiler", version.ref = "koin-bom" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin-bom" }
 
 # Navigation
@@ -87,6 +68,3 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-
