@@ -35,4 +35,8 @@ class NavigationViewModel(
         backStack.clear()
         backStack.add(route)
     }
+
+    fun clearNavigation() {
+        backStack.removeLastOrNull()
+    }
 }
