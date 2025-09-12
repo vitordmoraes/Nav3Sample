@@ -1,5 +1,5 @@
 package com.example.nav3example.presentation.state
 
-data class HomeUiState(
+data class LoggedUiState(
     val shouldNavigateToLogin: Boolean = false
 )

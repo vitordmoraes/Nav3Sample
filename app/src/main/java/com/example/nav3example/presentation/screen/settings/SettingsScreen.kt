@@ -1,6 +1,5 @@
 package com.example.nav3example.presentation.screen.settings
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,13 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun SettingsScreen(
-    onNavigateBack: () -> Unit,
-) {
-    BackHandler {
-        onNavigateBack()
-    }
-
+fun SettingsScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()

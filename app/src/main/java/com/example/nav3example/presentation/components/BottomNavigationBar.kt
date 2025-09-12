@@ -5,17 +5,17 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import com.example.nav3example.presentation.navigation.HomeNavigation
-import com.example.nav3example.presentation.navigation.HomeNavigation.Home
-import com.example.nav3example.presentation.navigation.HomeNavigation.Details
-import com.example.nav3example.presentation.navigation.HomeNavigation.Settings
+import com.example.nav3example.presentation.navigation.BottomNavigation
+import com.example.nav3example.presentation.navigation.BottomNavigation.Home
+import com.example.nav3example.presentation.navigation.BottomNavigation.Details
+import com.example.nav3example.presentation.navigation.BottomNavigation.Settings
 
 
 
 @Composable
 fun BottomNavigationBar(
-    selectedTab: HomeNavigation,
-    onTabSelected: (HomeNavigation) -> Unit
+    selectedTab: BottomNavigation,
+    onTabSelected: (BottomNavigation) -> Unit
 ) {
     val tabs = listOf(Details, Home, Settings)
 

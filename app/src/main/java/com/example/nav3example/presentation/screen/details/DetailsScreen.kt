@@ -1,6 +1,5 @@
 package com.example.nav3example.presentation.screen.details
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -15,13 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun DetailsScreen(
-    onNavigateBack: () -> Unit,
-) {
-    BackHandler {
-        onNavigateBack()
-    }
-
+fun DetailsScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
