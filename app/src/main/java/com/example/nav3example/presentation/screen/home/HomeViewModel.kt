@@ -22,4 +22,8 @@ class HomeViewModel(
             _uiState.value = _uiState.value.copy(shouldNavigateToLogin = true)
         }
     }
+
+    fun onLoggedOut() {
+        _uiState.value = _uiState.value.copy(shouldNavigateToLogin = false)
+    }
 }

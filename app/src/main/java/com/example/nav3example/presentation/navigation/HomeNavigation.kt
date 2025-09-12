@@ -7,7 +7,14 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class HomeNavigation(val route: String, val title: String, val icon: ImageVector) {
-    data object Home : HomeNavigation("home_tab", "Home", Icons.Default.Home)
-    data object Details : HomeNavigation("details_tab", "Details", Icons.Default.Info)
-    data object Settings : HomeNavigation("settings_tab", "Settings", Icons.Default.Settings)
+
+    private companion object {
+        const val HOME_TAB = "home_tab"
+        const val DETAILS_TAB = "details_tab"
+        const val SETTINGS_TAB = "settings_tab"
+    }
+
+    data object Home : HomeNavigation(HOME_TAB, "Home", Icons.Default.Home)
+    data object Details : HomeNavigation(DETAILS_TAB, "Details", Icons.Default.Info)
+    data object Settings : HomeNavigation(SETTINGS_TAB, "Settings", Icons.Default.Settings)
 }

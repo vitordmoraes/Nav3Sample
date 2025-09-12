@@ -42,6 +42,7 @@ fun HomeScreen(
     LaunchedEffect(uiState.shouldNavigateToLogin) {
         if (uiState.shouldNavigateToLogin) {
             onNavigateToLogin()
+            viewModel.onLoggedOut()
         }
     }
 
@@ -68,38 +69,10 @@ fun HomeScreen(
                 .padding(innerPadding),
             contentAlignment = Alignment.Center
         ) {
-            when (selectedTab) {
-
-                is HomeNavigation.Home -> {
-                    Text(
-                        text = "Home Content",
-                        style = MaterialTheme.typography.headlineMedium
-                    )
-                }
-
-                is HomeNavigation.Details -> {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(
-                            text = "Details Content",
-                            style = MaterialTheme.typography.headlineMedium
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
-                        Text(
-                            text = "Informações detalhadas sobre o app",
-                            style = MaterialTheme.typography.bodyMedium
-                        )
-                    }
-                }
-
-                is HomeNavigation.Settings -> {
-                    Text(
-                        text = "TODO",
-                        style = MaterialTheme.typography.headlineMedium
-                    )
-                }
-            }
+            Text(
+                text = "Home Content",
+                style = MaterialTheme.typography.headlineMedium
+            )
         }
     }
 }
