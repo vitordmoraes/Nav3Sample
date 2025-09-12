@@ -10,9 +10,3 @@ object LoginRoute
 
 @Serializable
 object HomeRoute
-
-@Serializable
-object DetailsRoute
-
-@Serializable
-object SettingsRoute

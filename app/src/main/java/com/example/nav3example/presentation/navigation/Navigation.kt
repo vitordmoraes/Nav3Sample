@@ -2,13 +2,14 @@ package com.example.nav3example.presentation.navigation
 
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
 import com.example.nav3example.presentation.components.BottomNavigationBar
@@ -25,10 +26,35 @@ import org.koin.androidx.compose.koinViewModel
 fun Navigation(
     navigationViewModel: NavigationViewModel = koinViewModel(),
 ) {
+//    val homeBackHandler = remember { mutableStateOf<(() -> Unit)?>(null) }
+
+//    fun handleBack() {
+//        val isHome = navigationViewModel.backStack.lastOrNull() is HomeRoute
+//        val handler = homeBackHandler.value
+//
+//        when {
+//            isHome && handler != null -> handler()
+//            navigationViewModel.backStack.size > 1 -> navigationViewModel.backStack.removeLastOrNull()
+//        }
+//    }
 
     NavDisplay(
         backStack = navigationViewModel.backStack,
-        onBack = {},
+        onBack = {
+//            when (navigationViewModel.backStack.lastOrNull()) {
+//                is HomeRoute -> {
+//                    val handler = homeBackHandler.value
+//                    if (handler != null) {
+//                        handler()
+//                    } else {
+//                        if (navigationViewModel.backStack.size > 1) navigationViewModel.backStack.removeLastOrNull()
+//                    }
+//                }
+//                else -> {
+//                    if (navigationViewModel.backStack.size > 1) navigationViewModel.backStack.removeLastOrNull()
+//                }
+//            }
+        },
         entryProvider = { route ->
             when (route) {
                 is SplashRoute -> NavEntry(route) {
@@ -65,6 +91,23 @@ fun Navigation(
                             navigationViewModel.onLoggedOut()
                         }
                     }
+//
+//                    LaunchedEffect(Unit) {
+//                        homeBackHandler.value = {
+//                            if (tabBackStack.lastOrNull() !is BottomNavigation) {
+//                                tabBackStack.clear()
+//                                tabBackStack.add(BottomNavigation.Home)
+//                            } else {
+//                                navigationViewModel.backStack.removeLastOrNull()
+//                            }
+//                        }
+//                    }
+//
+//                    DisposableEffect(Unit) {
+//                        onDispose {
+//                            homeBackHandler.value = null
+//                        }
+//                    }
 
                     Scaffold(
                         topBar = {

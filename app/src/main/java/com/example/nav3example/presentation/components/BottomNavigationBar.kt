@@ -10,8 +10,6 @@ import com.example.nav3example.presentation.navigation.BottomNavigation.Home
 import com.example.nav3example.presentation.navigation.BottomNavigation.Details
 import com.example.nav3example.presentation.navigation.BottomNavigation.Settings
 
-
-
 @Composable
 fun BottomNavigationBar(
     selectedTab: BottomNavigation,
