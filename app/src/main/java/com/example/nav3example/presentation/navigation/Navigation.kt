@@ -65,7 +65,7 @@ fun Navigation(
                 Scaffold(
                     topBar = {
                         TopBar(
-                            title = (tabBackStack.last() as HomeNavigationRoutes).title,
+                            title = "Home",
                             onLogoutClick = {
                                 navigationViewModel.logout()
                             }
