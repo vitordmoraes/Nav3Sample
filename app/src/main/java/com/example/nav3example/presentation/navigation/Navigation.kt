@@ -7,7 +7,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
-import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
 import com.example.nav3example.presentation.components.BottomNavigationBar
 import com.example.nav3example.presentation.components.TopBar
@@ -17,6 +16,8 @@ import com.example.nav3example.presentation.screen.login.LoginScreen
 import com.example.nav3example.presentation.screen.splash.SplashScreen
 import com.example.nav3example.presentation.state.LoggedUiState
 import org.koin.androidx.compose.koinViewModel
+import androidx.navigation3.runtime.entry
+import androidx.navigation3.runtime.entryProvider
 
 @Composable
 fun Navigation(
@@ -25,67 +26,63 @@ fun Navigation(
     NavDisplay(
         backStack = navigationViewModel.backStack,
         onBack = {},
-        entryProvider = { route ->
-            when (route) {
-                is SplashRoute -> NavEntry(route) {
-                    SplashScreen(
-                        onNavigateToHome = {
-                            navigationViewModel.clearAndNavigateTo(HomeRoute)
-                        },
-                        onNavigateToLogin = {
-                            navigationViewModel.clearAndNavigateTo(LoginRoute)
-                        }
-                    )
-                }
-
-                is LoginRoute -> NavEntry(route) {
-                    LoginScreen(
-                        onNavigateToHome = {
-                            navigationViewModel.clearAndNavigateTo(HomeRoute)
-                        }
-                    )
-                }
-
-                is HomeRoute -> NavEntry(route) {
-                    val tabBackStack = remember { mutableStateListOf<Any>(HomeNavigationRoutes.Home) }
-
-                    val uiState by produceState(initialValue = LoggedUiState()) {
-                        navigationViewModel.uiState.collect { newState ->
-                            value = newState
-                        }
+        entryProvider = entryProvider {
+            entry<SplashRoute> {
+                SplashScreen(
+                    onNavigateToHome = {
+                        navigationViewModel.clearAndNavigateTo(HomeRoute)
+                    },
+                    onNavigateToLogin = {
+                        navigationViewModel.clearAndNavigateTo(LoginRoute)
                     }
+                )
+            }
 
-                    LaunchedEffect(uiState.shouldNavigateToLogin) {
-                        if (uiState.shouldNavigateToLogin) {
-                            navigationViewModel.clearAndNavigateTo(LoginRoute)
-                            navigationViewModel.onLoggedOut()
-                        }
+            entry<LoginRoute> {
+                LoginScreen(
+                    onNavigateToHome = {
+                        navigationViewModel.clearAndNavigateTo(HomeRoute)
                     }
+                )
+            }
 
-                    Scaffold(
-                        topBar = {
-                            TopBar(
-                                title = (tabBackStack.last() as HomeNavigationRoutes).title,
-                                onLogoutClick = {
-                                    navigationViewModel.logout()
-                                }
-                            )
-                        },
-                        bottomBar = {
-                            BottomNavigationBar(
-                                selectedTab = tabBackStack.last() as HomeNavigationRoutes,
-                                onTabSelected = { tab ->
-                                    tabBackStack.clear()
-                                    tabBackStack.add(tab)
-                                }
-                            )
-                        }
-                    ) { _ ->
-                        HomeNavigation(tabBackStack, navigationViewModel)
+            entry<HomeRoute> {
+                val tabBackStack = remember { mutableStateListOf<Any>(HomeNavigationRoutes.Home) }
+
+                val uiState by produceState(initialValue = LoggedUiState()) {
+                    navigationViewModel.uiState.collect { newState ->
+                        value = newState
                     }
                 }
 
-                else -> NavEntry(Unit) {}
+                LaunchedEffect(uiState.shouldNavigateToLogin) {
+                    if (uiState.shouldNavigateToLogin) {
+                        navigationViewModel.clearAndNavigateTo(LoginRoute)
+                        navigationViewModel.onLoggedOut()
+                    }
+                }
+
+                Scaffold(
+                    topBar = {
+                        TopBar(
+                            title = (tabBackStack.last() as HomeNavigationRoutes).title,
+                            onLogoutClick = {
+                                navigationViewModel.logout()
+                            }
+                        )
+                    },
+                    bottomBar = {
+                        BottomNavigationBar(
+                            selectedTab = tabBackStack.last() as HomeNavigationRoutes,
+                            onTabSelected = { tab ->
+                                tabBackStack.clear()
+                                tabBackStack.add(tab)
+                            }
+                        )
+                    }
+                ) { _ ->
+                    HomeNavigation(tabBackStack, navigationViewModel)
+                }
             }
         }
     )
