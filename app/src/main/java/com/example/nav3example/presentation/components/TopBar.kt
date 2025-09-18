@@ -18,13 +18,12 @@ import androidx.compose.runtime.setValue
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
-    title: String,
     onLogoutClick: () -> Unit
 ) {
     var showMenu by remember { mutableStateOf(false) }
 
     TopAppBar(
-        title = { Text(title) },
+        title = {},
         actions = {
             IconButton(onClick = { showMenu = true }) {
                 Icon(Icons.Default.MoreVert, contentDescription = "Menu")
