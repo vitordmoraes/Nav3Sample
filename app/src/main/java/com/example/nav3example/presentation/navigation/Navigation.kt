@@ -18,6 +18,9 @@ import com.example.nav3example.presentation.state.LoggedUiState
 import org.koin.androidx.compose.koinViewModel
 import androidx.navigation3.runtime.entry
 import androidx.navigation3.runtime.entryProvider
+import com.example.nav3example.presentation.animation.NavAnimations.homeFadeOrSlideAnimation
+import com.example.nav3example.presentation.animation.NavAnimations.loginFadeOrSlideAnimation
+import com.example.nav3example.presentation.animation.NavAnimations.longFadeAnimation
 
 @Composable
 fun Navigation(
@@ -27,18 +30,22 @@ fun Navigation(
         backStack = navigationViewModel.backStack,
         onBack = {},
         entryProvider = entryProvider {
-            entry<SplashRoute> {
+            entry<SplashRoute>(
+                metadata = longFadeAnimation()
+            ) {
                 SplashScreen(
                     onNavigateToHome = {
-                        navigationViewModel.clearAndNavigateTo(HomeRoute)
+                        navigationViewModel.navigateTo(HomeRoute)
                     },
                     onNavigateToLogin = {
-                        navigationViewModel.clearAndNavigateTo(LoginRoute)
+                        navigationViewModel.navigateTo(LoginRoute)
                     }
                 )
             }
 
-            entry<LoginRoute> {
+            entry<LoginRoute>(
+                metadata = loginFadeOrSlideAnimation(navigationViewModel.backStack)
+            ) {
                 LoginScreen(
                     onNavigateToHome = {
                         navigationViewModel.clearAndNavigateTo(HomeRoute)
@@ -46,7 +53,7 @@ fun Navigation(
                 )
             }
 
-            entry<HomeRoute> {
+            entry<HomeRoute>(metadata = homeFadeOrSlideAnimation(navigationViewModel.backStack)) {
                 val tabBackStack = remember { mutableStateListOf<Any>(HomeNavigationRoutes.Home) }
 
                 val uiState by produceState(initialValue = LoggedUiState()) {
@@ -57,7 +64,7 @@ fun Navigation(
 
                 LaunchedEffect(uiState.shouldNavigateToLogin) {
                     if (uiState.shouldNavigateToLogin) {
-                        navigationViewModel.clearAndNavigateTo(LoginRoute)
+                        navigationViewModel.navigateTo(LoginRoute)
                         navigationViewModel.onLoggedOut()
                     }
                 }
@@ -65,7 +72,7 @@ fun Navigation(
                 Scaffold(
                     topBar = {
                         TopBar(
-                            title = "Home",
+                            title = (tabBackStack.last() as HomeNavigationRoutes).title,
                             onLogoutClick = {
                                 navigationViewModel.logout()
                             }
@@ -81,7 +88,7 @@ fun Navigation(
                         )
                     }
                 ) { _ ->
-                    HomeNavigation(tabBackStack, navigationViewModel)
+                    HomeNavigation(tabBackStack)
                 }
             }
         }

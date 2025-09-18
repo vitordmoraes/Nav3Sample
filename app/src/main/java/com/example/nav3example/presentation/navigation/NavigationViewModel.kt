@@ -36,7 +36,10 @@ class NavigationViewModel(
         backStack.add(route)
     }
 
-    fun clearNavigation() {
-        backStack.removeLastOrNull()
+    fun navigateTo(route: Any) {
+        if (backStack.size >= 2) {
+            backStack.clear()
+        }
+        backStack.add(route)
     }
 }
